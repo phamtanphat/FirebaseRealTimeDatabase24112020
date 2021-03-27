@@ -24,7 +24,23 @@ public class MainActivity extends AppCompatActivity {
         // 1 : Kiểu string
 
         // Android24112020 : 10 bạn
-        myRef.child("Android24112020").setValue("10 bạn").addOnCompleteListener(new OnCompleteListener<Void>() {
+//        myRef.child("Android24112020").setValue("10 bạn").addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()){
+//                    Toast.makeText(MainActivity.this, "Thêm dữ liệu thành công", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+
+        // 2 : Kiểu object
+        // Phuongtien
+            // ten : xe dap
+            // sobanh : 2 bánh
+        Phuongtien xedap = new Phuongtien("xe đạp" , 2);
+        myRef.child("Phuongtien").setValue(xedap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
@@ -34,6 +50,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // 3 : Kiểu list object
+
+        // Message
+        // sadqw2132313-ưqe2133
+        // text : "Xin chào"
+        // time : "192021311"
+
+//        myRef.child("Message")
+//                .push()
+//                .setValue(new Message("Tôi tên là phát",System.currentTimeMillis()))
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()){
+//                            Toast.makeText(MainActivity.this, "Thêm dữ liệu thành công", Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
 
     }
 }
