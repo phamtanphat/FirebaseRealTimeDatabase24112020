@@ -27,4 +27,12 @@ public class Phuongtien {
     public void setSobanh(Integer sobanh) {
         this.sobanh = sobanh;
     }
+
+    @Override
+    public String toString() {
+        return "Phuongtien{" +
+                "ten='" + ten + '\'' +
+                ", sobanh=" + sobanh +
+                '}';
+    }
 }

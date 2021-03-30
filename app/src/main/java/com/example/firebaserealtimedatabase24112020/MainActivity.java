@@ -1,23 +1,18 @@
 package com.example.firebaserealtimedatabase24112020;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import com.example.firebaserealtimedatabase24112020.Message;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,18 +89,49 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        myRef.child("Phuongtien").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HashMap<String,String> hashMap = (HashMap<String, String>) snapshot.getValue();
-                Iterator iterator = hashMap.entrySet().iterator();
+//        myRef.child("Phuongtien").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                HashMap<String,String> hashMap = (HashMap<String, String>) snapshot.getValue();
+//                Iterator iterator = hashMap.entrySet().iterator();
 
-                while (iterator.hasNext()){
-                    Map.Entry entry = (Map.Entry) iterator.next();
-                    Log.d("BBB",entry.getKey().toString());
-                    Log.d("BBB",entry.getValue().toString());
-                    iterator.remove();
-                }
+//                while (iterator.hasNext()){
+//                    Map.Entry entry = (Map.Entry) iterator.next();
+//                    Log.d("BBB",entry.getKey().toString());
+//                    Log.d("BBB",entry.getValue().toString());
+//                    iterator.remove();
+//                }
+//                Phuongtien phuongtien = snapshot.getValue(Phuongtien.class);
+//                Toast.makeText(MainActivity.this, phuongtien.toString(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+        myRef.child("Message").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Message message = snapshot.getValue(Message.class);
+                Toast.makeText(MainActivity.this, message.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
